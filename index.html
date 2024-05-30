@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo App TOP</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="Sidebar">
+        <div class="ContainerAllProjects">
+            <div class="AllProjects">
+                <button class="BtnProject">All Projects</button>
+            </div>
+        </div>
+        <div class="ContainerDates ContainerGrid">
+            <button class="BtnProject">Today</button>
+            <button class="BtnProject">7 days</button>
+            <button class="BtnProject">Anytime</button>
+        </div>
+        <div class="ContainerProjects ContainerGrid">
+            <button class="BtnProject">Project 1</button>
+            <button class="BtnProject">Project 2</button>
+            <button class="BtnProject">Project 3</button>
+        </div>
+    </div>
+    <div class="Main">
+        <div class="CreateProject">
+            <input type="text" name="" class="BtnCreateProject" placeholder="Create a project ... ">
+            <button class="BtnCreateProject BtnCreatePlus">+</button>
+        </div>
+        <div class="ProjectCard">
+            <div class="ProjectTitle">
+                <input type="text" name="" id="" class="ProjectTitleText" placeholder="Project 1"></input>
+            </div>
+            <div class="ProjectDescription">
+                <div><strong>Description</strong></div>
+                <textarea name="DescriptionText" id="DescriptionText" rows="8" cols="65" placeholder="Project info"></textarea>
+            </div>
+            <div class="ProjectInfo">
+                <div class="ProjectDueDate">
+                    <div>Due date: </div>
+                    <div>30/06/2024</div>
+                </div>
+                <div class="ProjectPriority">
+                    <div>Priority: </div>
+                    <select name="" id="">
+                        <option value="low">low</option>
+                        <option value="mid">mid</option>
+                        <option value="heigh">heigh</option>
+                    </select>
+                </div>
+            </div>
+            <div class="ToDos">
+                <div class="TodoCheckbox">
+                    <input type="checkbox">
+                    <input type="text" name="" id="" size="45px" value="Layout maken!">
+                    <div>priority: </div>
+                    <select name="" id="">
+                        <option value="low">low</option>
+                        <option value="mid">mid</option>
+                        <option value="heigh">heigh</option>
+                    </select>
+                </div>
+                <div class="TodoAdd">
+                    <div>+</div>
+                    <input type="text" name="" id="" class="TodoAddTodo" size="45px" placeholder="add todo">
+                    <div class="TodoAddPrio">priority: </div>
+                    <select name="" id="" class="TodoAddPrio">
+                        <option value="low">low</option>
+                        <option value="mid">mid</option>
+                        <option value="heigh">heigh</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<!-- description, dueDate and priority -->
