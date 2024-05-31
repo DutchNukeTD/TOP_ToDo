@@ -10,7 +10,7 @@ body {
     width: 1500px;
 }
 
-.Sidebar {
+.SideBar {
     display: flex;
     flex-direction: column;
     background-color: gray;
@@ -19,15 +19,15 @@ body {
 }
 
 .ContainerAllProjects {
-    margin: 10% 0px 10% 0px;
+    margin: 30px 0px 30px 0px;
 }
 
 .ContainerGrid {
     display: grid;
     grid-template-columns: auto;
-    gap: 15%;
+    gap: 10px;
     justify-items: start;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
 .Main {
@@ -76,9 +76,10 @@ body {
 .BtnCreateProject {
     background-color: #dddddd;
     height: 30px;
-    width: 300px;
+    width: 500px;
     border: none;
 }
+
 
 .BtnCreateProject:hover {
     background-color: rgb(201, 201, 201);
@@ -96,6 +97,12 @@ body {
 
 .BtnCreatePlus {
     width: 30px;
+    font-weight: 600;
+    font-size: 15px;
+} 
+.BtnCreatePlus:active {
+    background-color: grey;
+    border-radius: 15px;
 }
 
 .ProjectCard {
@@ -150,4 +157,22 @@ body {
 
 .TodoAddPrio {
     visibility: hidden;
+}
+
+.BtnCreateTodo {
+    background-color: #dddddd;
+    border: none;
+    margin-left: -5px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.BtnCreateTodo:hover {
+    background-color: rgb(201, 201, 201);
+    border-radius: 10px;
+}
+
+.BtnCreateTodo:active {
+    background-color: gray;
+    border-radius: 10px;
 }
