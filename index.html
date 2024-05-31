@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="BodyCenter">
-        <div class="Sidebar">
+        <div class="SideBar">
             <div class="ContainerAllProjects">
                 <div class="AllProjects">
                     <button class="BtnProject">All Projects</button>
@@ -26,13 +26,7 @@
                 </div>
             <div class="ContainerProjects ContainerGrid">
                 <div class="ContainerBtnProject">
-                    <button class="BtnProject">Project 1</button>
-                </div>
-                <div class="ContainerBtnProject">
-                    <button class="BtnProject">Project 2</button>
-                </div>
-                <div class="ContainerBtnProject">
-                    <button class="BtnProject">Project 3</button>
+                    <button class="BtnProject">Default</button>
                 </div>
             </div>
         </div>
@@ -45,7 +39,7 @@
             </div>
             <div class="ProjectCard">
                 <div class="ProjectTitle">
-                    <input type="text" name="" id="" class="ProjectTitleText" placeholder="Project 1"></input>
+                    <input type="text" name="" id="" class="ProjectTitleText" placeholder="Default"></input>
                 </div>
                 <div class="ProjectDescription">
                     <div><strong>Description</strong></div>
@@ -66,31 +60,25 @@
                     </div>
                 </div>
                 <div class="ToDos">
-                    <div class="TodoCheckbox">
-                        <input type="checkbox">
-                        <input type="text" name="" id="" size="45px" value="Layout maken!">
-                        <div>priority: </div>
-                        <select name="" id="">
-                            <option value="low">low</option>
-                            <option value="mid">mid</option>
-                            <option value="heigh">heigh</option>
-                        </select>
+                    <div class="TodoContainer">
+                        <div class="TodoCheckbox">
+                            <input type="checkbox">
+                            <input type="text" name="" id="" size="45px" placeholder="Default todo item!">
+                            <div>priority: </div>
+                            <select name="" id="">
+                                <option value="low">low</option>
+                                <option value="mid">mid</option>
+                                <option value="heigh">heigh</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="TodoAdd">
-                        <div>+</div>
-                        <input type="text" name="" id="" class="TodoAddTodo" size="45px" placeholder="add todo">
-                        <div class="TodoAddPrio">priority: </div>
-                        <select name="" id="" class="TodoAddPrio">
-                            <option value="low">low</option>
-                            <option value="mid">mid</option>
-                            <option value="heigh">heigh</option>
-                        </select>
+                        <button class="BtnCreateTodo">+</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script src="todo.js" defer></script>
 </body>
 </html>
-
-<!-- description, dueDate and priority -->
