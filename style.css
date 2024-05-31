@@ -1,7 +1,13 @@
 body {
-    display: grid;
-    grid-template-columns: 1fr 4fr;
     margin: 0px;
+    display: flex;
+    justify-content: center;
+}
+
+.BodyCenter {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    width: 1500px;
 }
 
 .Sidebar {
@@ -10,7 +16,6 @@ body {
     background-color: gray;
     padding-top: 15%;
     padding-left: 10%;
-    height: 100vh;
 }
 
 .ContainerAllProjects {
@@ -29,7 +34,7 @@ body {
     background-color: #dddddd;
     padding-top: 5%;
     padding-left: 5%;
-    height: 100vh;
+    height: 96vh;
 }
 
 .BtnProject {
@@ -39,11 +44,20 @@ body {
     text-shadow: 1px 1px 2px black;
     border: none;
     background-color: gray;
+    margin-left: -25px;
+    border-radius: 0px 15px 15px 0px;
+    padding: 5px 55px 5px 25px;
+    width: 200px;
+    text-align: left;
 }
 
 .BtnProject:hover {
-    color: #818181;
     cursor: pointer;
+    background-color: rgb(104, 104, 104);
+}
+
+.BtnProject:focus {
+    background-color: rgb(163, 143, 54);
 }
 
 .CreateProject {
@@ -52,17 +66,36 @@ body {
     margin: 20px;
 }
 
-.BtnCreateProject {
+.ContainerCreateProject {
     background-color: #dddddd;
     border: 1px solid grey;
     border-radius: 4px;
     box-shadow: 1px 1px 2px #494949;
+}
+
+.BtnCreateProject {
+    background-color: #dddddd;
     height: 30px;
     width: 300px;
+    border: none;
+}
+
+.BtnCreateProject:hover {
+    background-color: rgb(201, 201, 201);
+    border-radius: 15px;
+}
+
+.BtnCreateProject:focus-visible {
+    outline: none;
+}
+
+.BtnCreateText:hover {
+    background-color: #dddddd;
+    border-radius: 4px;
 }
 
 .BtnCreatePlus {
-    width: 20px;
+    width: 30px;
 }
 
 .ProjectCard {
