@@ -159,6 +159,21 @@ body {
     visibility: hidden;
 }
 
+.BtnTodoDelete {
+    background-color: #dddddd;
+    border: none;
+}
+
+.BtnTodoDelete:hover {
+    background-color: rgb(201, 201, 201);
+    border-radius: 10px;
+}
+
+.BtnTodoDelete:active {
+    background-color: gray;
+    border-radius: 10px;
+}
+
 .BtnCreateTodo {
     background-color: #dddddd;
     border: none;
