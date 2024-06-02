@@ -131,7 +131,7 @@ function addProjectHTML(projects){
         let projectTitleSideBar = document.createElement('div');
         projectTitleSideBar.className = "ContainerBtnProject";
         let projectTitleBtn = document.createElement('button');
-        projectTitleBtn.className = "BtnProject" + " " + "BtnProject" + "_" + i;
+        projectTitleBtn.className = "BtnProject" + " " + "CreatedProject" + " " + "BtnProject" + "_" + i;
         projectTitleBtn.innerHTML = projects[i];
 
         projectTitles.appendChild(projectTitleSideBar);
@@ -189,6 +189,15 @@ function addProjectTodoItemHTML(projects, projectsTodoList){
 // Javascript html interaction//
 /////////////////////////////////////////////////////////////////////////// 
 
+let sideBar = document.querySelector('.SideBar');
+sideBar.addEventListener("click", (event) => {
+    if (event.target.classList.contains('CreatedProject')){
+        console.log('This project is created, switch project!');
+        console.log(event.target.innerHTML);
+    }
+});
+
+
 
 const BtnCreateProject = document.querySelector('.BtnCreatePlus');
 BtnCreateProject.addEventListener("click", (event) => {
@@ -217,8 +226,8 @@ BtnCreateProject.addEventListener("click", (event) => {
     }
 });
 
-const todoContainer = document.querySelector('.ToDos');
-todoContainer.addEventListener('click', (event) => {
+const main = document.querySelector('.Main');
+main.addEventListener('click', (event) => {
     if (event.target.classList.contains('BtnCreateTodo')) {
         addProjectTodo(projectsTodoList)
         addProjectTodoItemHTML(projects, projectsTodoList);
