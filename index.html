@@ -51,8 +51,8 @@
                         <div><input type="date"></div>
                     </div>
                     <div class="ProjectPriority">
-                        <div>Priority: </div>
-                        <select name="" id="">
+                        <div class="TodoPriority">Priority: </div>
+                        <select name="" class="PriorityValue">
                             <option value="low">low</option>
                             <option value="mid">mid</option>
                             <option value="heigh">heigh</option>
@@ -61,16 +61,16 @@
                 </div>
                 <div class="ToDos">
                     <div class="TodoContainer">
-                        <div class="TodoCheckbox _00 _001">
-                            <input type="checkbox">
-                            <input type="text" name="" id="" size="45px" placeholder="Default todo item!">
+                        <div class="TodoCheckbox _00 _000">
+                            <input type="checkbox" class="Checkbox _00 _000">
+                            <input type="text" name="" class="TodoCheckboxText _00 _000" size="45px" placeholder="Default todo item!">
                             <div>priority: </div>
-                            <select name="" id="">
+                            <select name="" class="PriorityValue _00 _000">
                                 <option value="low">low</option>
                                 <option value="mid">mid</option>
                                 <option value="heigh">heigh</option>
                             </select>
-                            <button class="BtnTodoDelete _00 _001">X</button>
+                            <button class="BtnTodoDelete _00 _000">X</button>
                         </div>
                     </div>
                     <div class="TodoAdd">
@@ -80,6 +80,6 @@
             </div>
         </div>
     </div>
-    <script src="index.js" defer></script>
+    <script src="todo.js" defer></script>
 </body>
 </html>
