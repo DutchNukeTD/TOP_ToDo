@@ -116,6 +116,7 @@ body {
 .TodoCheckbox {
     display: flex;
     justify-content: space-between;
+    margin: 5px 0px;
 }
 
 .ProjectTitleText {
@@ -155,8 +156,26 @@ body {
     margin-left: 5px;
 }
 
+.TodoPriority {
+    display: flex;
+}
+
 .TodoAddPrio {
     visibility: hidden;
+}
+
+.PriorityValue {
+    background-color: #f3f363;
+}
+
+select option[value='low'] {
+    background-color: #f3f363;
+}
+select option[value='mid'] {
+    background-color: #f3be63;
+}
+select option[value='heigh'] {
+    background-color: #f93434;
 }
 
 .BtnTodoDelete {
