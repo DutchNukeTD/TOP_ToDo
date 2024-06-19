@@ -15,18 +15,19 @@
                 </div>
             </div>
             <div class="ContainerDates ContainerGrid">
-                <div class="ContainerBtnProject">
+                <div class="ContainerBtnProject Filter">
                     <button class="BtnProject">Today</button>
                 </div>
-                <div class="ContainerBtnProject">
+                <div class="ContainerBtnProject Filter">
                     <button class="BtnProject">7 days</button>
                 </div>
-                <div class="ContainerBtnProject">
+                <div class="ContainerBtnProject Filter">
                     <button class="BtnProject">Anytime</button></div>
                 </div>
             <div class="ContainerProjects ContainerGrid">
-                <div class="ContainerBtnProject">
-                    <button class="BtnProject">Default</button>
+                <div class="ContainerBtnProject ContainerCreatedProject _00">
+                    <button class="BtnProject CreatedProject _00">Default</button>
+                    <button class="BtnDeleteProject _00">X</button></buttono>
                 </div>
             </div>
         </div>
@@ -34,46 +35,49 @@
             <div class="CreateProject">
                 <div class="ContainerCreateProject">
                     <input type="text" name="" class="BtnCreateProject BtnCreateText" placeholder="Create a project ... ">
-                    <button class="BtnCreateProject BtnCreatePlus">+</button>
+                    <button class="BtnCreateProject BtnCreatePlus" type="submit">+</button>
                 </div>
             </div>
-            <div class="ProjectCard">
-                <div class="ProjectTitle">
-                    <input type="text" name="" id="" class="ProjectTitleText" placeholder="Default"></input>
-                </div>
-                <div class="ProjectDescription">
-                    <div><strong>Description</strong></div>
-                    <textarea name="DescriptionText" id="DescriptionText" rows="8" cols="65" placeholder="Project info"></textarea>
-                </div>
-                <div class="ProjectInfo">
-                    <div class="ProjectDueDate">
-                        <div>Due date: </div>
-                        <div><input type="date"></div>
+            <div class="ProjectsArea">
+                <div class="ProjectCard _00">
+                    <div class="ProjectTitle">
+                        <input type="text" name="" id="" class="ProjectTitleText _00" placeholder="Default"></input>
                     </div>
-                    <div class="ProjectPriority">
-                        <div>Priority: </div>
-                        <select name="" id="">
-                            <option value="low">low</option>
-                            <option value="mid">mid</option>
-                            <option value="heigh">heigh</option>
-                        </select>
+                    <div class="ProjectDescription">
+                        <div><strong>Description</strong></div>
+                        <textarea name="DescriptionText" class="DescriptionText _00" rows="8" cols="65" placeholder="Project info"></textarea>
                     </div>
-                </div>
-                <div class="ToDos">
-                    <div class="TodoContainer">
-                        <div class="TodoCheckbox">
-                            <input type="checkbox">
-                            <input type="text" name="" id="" size="45px" placeholder="Default todo item!">
-                            <div>priority: </div>
-                            <select name="" id="">
+                    <div class="ProjectInfo">
+                        <div class="ProjectDueDate">
+                            <div>Due date: </div>
+                            <div><input type="date" class="Date _00"></div>
+                        </div>
+                        <div class="ProjectPriority">
+                            <div class="TodoPriority">Priority: </div>
+                            <select name="" class="PriorityValue _00">
                                 <option value="low">low</option>
                                 <option value="mid">mid</option>
-                                <option value="heigh">heigh</option>
+                                <option value="high">high</option>
                             </select>
                         </div>
                     </div>
-                    <div class="TodoAdd">
-                        <button class="BtnCreateTodo">+</button>
+                    <div class="ToDos _00">
+                        <div class="TodoContainer _00">
+                            <div class="TodoCheckbox _00 _000">
+                                <input type="checkbox" class="Checkbox _00 _000">
+                                <input type="text" name="" class="TodoCheckboxText _00 _000" size="45px" placeholder="Default todo item!">
+                                <div>priority: </div>
+                                <select name="" class="TodoPriorityValue _00 _000">
+                                    <option value="low">low</option>
+                                    <option value="mid">mid</option>
+                                    <option value="high">high</option>
+                                </select>
+                                <button class="BtnTodoDelete _00 _000">X</button>
+                            </div>
+                        </div>
+                        <div class="TodoAdd">
+                            <button class="BtnCreateTodo _00">+</button>
+                        </div>
                     </div>
                 </div>
             </div>
