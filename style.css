@@ -37,6 +37,11 @@ body {
     height: 96vh;
 }
 
+.ProjectsArea {
+    overflow-y: scroll;
+    height: 80vh;
+}
+
 .BtnProject {
     color: #d9d9d9;
     font-size: large;
@@ -49,16 +54,55 @@ body {
     padding: 5px 55px 5px 25px;
     width: 200px;
     text-align: left;
+    text-wrap: nowrap;
 }
 
 .BtnProject:hover {
     cursor: pointer;
     background-color: rgb(104, 104, 104);
+    width: clamp(50px, 150px, 300px);
 }
 
 .BtnProject:focus {
     background-color: rgb(163, 143, 54);
+    width: clamp(50px, 150px, 300px);
 }
+
+.BtnDeleteProject {
+    background-color: #686868;
+    border: none;
+    position: relative;
+    right: 35px;
+    color: #d1d1d1dd;
+    font-size: large;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px black;
+    visibility: hidden;
+}
+
+.ContainerBtnProject:hover .BtnDeleteProject {
+    visibility: visible;
+}
+
+.BtnDeleteProject:hover {
+    background-color: #686868;
+    border: none;
+    position: relative;
+    right: 35px;
+    color: #e7e7e7;
+    font-size: larger;
+    font-weight: 600;
+    text-shadow: 3px 3px 5px black;
+    cursor: pointer;
+    text-wrap: nowrap;
+}
+
+.ContainerBtnProject:hover .BtnProject {
+    cursor: pointer;
+    width: clamp(50px, 150px, 300px);
+    background-color: rgb(104, 104, 104);
+}
+
 
 .CreateProject {
     display: flex;
@@ -71,6 +115,10 @@ body {
     border: 1px solid grey;
     border-radius: 4px;
     box-shadow: 1px 1px 2px #494949;
+}
+
+.ContainerCreatedProject:hover {
+    text-wrap: nowrap;
 }
 
 .BtnCreateProject {
@@ -116,6 +164,7 @@ body {
 .TodoCheckbox {
     display: flex;
     justify-content: space-between;
+    margin: 5px 0px;
 }
 
 .ProjectTitleText {
@@ -155,8 +204,45 @@ body {
     margin-left: 5px;
 }
 
+.TodoPriority {
+    display: flex;
+}
+
 .TodoAddPrio {
     visibility: hidden;
+}
+
+.PriorityValue {
+    background-color: #f3f363;
+}
+
+.TodoPriorityValue {
+    background-color: #f3f363;
+}
+
+select option[value='low'] {
+    background-color: #f3f363;
+}
+select option[value='mid'] {
+    background-color: #f3be63;
+}
+select option[value='heigh'] {
+    background-color: #f93434;
+}
+
+.BtnTodoDelete {
+    background-color: #dddddd;
+    border: none;
+}
+
+.BtnTodoDelete:hover {
+    background-color: rgb(201, 201, 201);
+    border-radius: 10px;
+}
+
+.BtnTodoDelete:active {
+    background-color: gray;
+    border-radius: 10px;
 }
 
 .BtnCreateTodo {
