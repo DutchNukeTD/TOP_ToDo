@@ -37,9 +37,16 @@ body {
     height: 96vh;
 }
 
+/* project cards */
 .ProjectsArea {
     overflow-y: scroll;
     height: 80vh;
+}
+ /* sideBar  */
+.ContainerProjects {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 70vh;
 }
 
 .BtnProject {
