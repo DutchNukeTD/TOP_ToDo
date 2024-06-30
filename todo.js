@@ -1,3 +1,7 @@
+// import { formatDistance, subDays } from "date-fns";
+
+// formatDistance(subDays(new Date(), 3), new Date(), { addSuffix: true });
+
 const Project = {
     projects : ['Default'],
     projectDescription : [''],
@@ -65,19 +69,6 @@ const Project = {
 // ####################################################################################################################
 // ####################################################################################################################
 // ####################################################################################################################
-
-
-function consolelogProjects() {
-    console.log("projects = " + projects);
-    console.log("projectDescription = " + projectDescription);
-    console.log("projectDate = " + projectDate);
-    console.log("projectPrio = " + projectPrio);
-    console.log("Project.currentProject = " + Project.currentProject);
-    console.log("Project.projectsTodoList = " + Project.projectsTodoList);
-    console.log("Project.projectsTodoListChecked = " + Project.projectsTodoListChecked);
-    console.log("Project.projectsTodoListDisable = " + Project.projectsTodoListDisable);
-    console.log("Project.projectsTodoListPrio = " + Project.projectsTodoListPrio);
-}
 
 function getProjectIndex() {
     projectIndex = Project.projects.indexOf(Project.currentProject);
@@ -465,10 +456,10 @@ function removeProjectVars(project) {
     itemProject = itemParent.querySelector('.CreatedProject');
     itemName = itemProject.innerHTML;
     itemIndex = getClassnameProjectIndex(project);
-    projects.splice(itemIndex, 1);
-    projectDescription.splice(itemIndex, 1);
-    projectDate.splice(itemIndex, 1);
-    projectPrio.splice(itemIndex, 1);
+    Project.projects.splice(itemIndex, 1);
+    Project.projectDescription.splice(itemIndex, 1);
+    Project.projectPrio.splice(itemIndex, 1);
+    Project.projectDate.splice(itemIndex, 1);
     Project.projectsTodoList.splice(itemIndex, 1);
     Project.projectsTodoListChecked.splice(itemIndex, 1);
     Project.projectsTodoListDisable.splice(itemIndex, 1);
@@ -507,6 +498,16 @@ function createProjectFunctions() {
     projectPriorityColor(projectPrioValue);
 }
 
+function getDates(){
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+    let yyyy = today.getFullYear();
+    todayDate = String(yyyy) + '-' + String(mm) + '-' + String(dd); 
+
+    return todayDate
+}
+
 /////////////////////////////////////////////////////////////////////////// 
 // Javascript html interaction//
 /////////////////////////////////////////////////////////////////////////// 
@@ -537,9 +538,90 @@ allProjectsBtn.addEventListener("click", (event) => {
         // set todo values  
         setTodoValues();
     }
-    
-
 });
+
+let btnDates = document.querySelectorAll('.BtnProject');
+btnDates.forEach((item) => {
+    item.addEventListener("click", (event) => {
+        // Delete all current projects on screen
+        deleteProjects();
+        // Create all projects 
+        // Today
+        // Get Date of today
+        let todayDate = getDates();
+
+        if (event.target.innerHTML == 'Today') {
+
+            for (let item = 0; item < Project.projectDate.length; item++) {
+                if (Project.projectDate[item] == todayDate) {
+                    projectIndex = item;
+                    Project.currentProject = Project.projects[projectIndex]
+                    createProjectHTML();
+                    projectIndex = item.toString().padStart(2, '0');
+            
+                    let ProjectTitleText = document.querySelector('.ProjectTitleText._'+projectIndex);
+                    ProjectTitleText.value = Project.currentProject;
+                    let discriptionText = document.querySelector('.DescriptionText._'+projectIndex);
+                    discriptionText.value = Project.projectDescription[item];
+                    let dueDateDate = document.querySelector('.Date._'+projectIndex);
+                    dueDateDate.value = Project.projectDate[item];
+                    let prioritySelect = document.querySelector('.PriorityValue._'+projectIndex);
+                    prioritySelect.value = Project.projectPrio[item]; 
+                    projectPriorityColor(prioritySelect);
+            
+                    // createProjectTodos();
+                    createProjectTodos();
+                    // set todo values  
+                    setTodoValues();
+                }   
+            }
+        } 
+        else if (event.target.innerHTML == '7 days') {
+            for (let item = 0; item < Project.projectDate.length; item++) {
+                let today = new Date();
+                let nextWeek = new Date(today); 
+
+                // 7 days
+                for (let day = 0; day<7; day++) {
+                    nextWeek = new Date(nextWeek.getTime());
+                    
+                    let dd = String(nextWeek.getDate()).padStart(2, '0');
+                    let mm = String(nextWeek.getMonth() + 1).padStart(2, '0');
+                    let yyyy = nextWeek.getFullYear();
+                    let nextDayDate = String(yyyy) + '-' + String(mm) + '-' + String(dd); 
+                
+                    console.log('nextWeek = ' + nextDayDate);
+                    
+                    if (Project.projectDate[item] == nextDayDate) {
+                        console.log(nextDayDate);
+                        projectIndex = item;
+                        Project.currentProject = Project.projects[projectIndex]
+                        createProjectHTML();
+                        projectIndex = item.toString().padStart(2, '0');
+                
+                        let ProjectTitleText = document.querySelector('.ProjectTitleText._'+projectIndex);
+                        ProjectTitleText.value = Project.currentProject;
+                        let discriptionText = document.querySelector('.DescriptionText._'+projectIndex);
+                        discriptionText.value = Project.projectDescription[item];
+                        let dueDateDate = document.querySelector('.Date._'+projectIndex);
+                        dueDateDate.value = Project.projectDate[item];
+                        let prioritySelect = document.querySelector('.PriorityValue._'+projectIndex);
+                        prioritySelect.value = Project.projectPrio[item]; 
+                        projectPriorityColor(prioritySelect);
+                
+                        // createProjectTodos();
+                        createProjectTodos();
+                        // set todo values  
+                        setTodoValues();
+                    } 
+                    nextWeek.setDate(nextWeek.getDate() + 1 );   
+                }
+            }
+        }
+    })
+});
+
+
 
 let sideBar = document.querySelector('.SideBar');
 sideBar.addEventListener("click", (event) => {
@@ -577,6 +659,7 @@ BtnCreateProject.addEventListener("click", (event) => {
         if (!(Project.projects.includes(projectTitle))) {
             // Create new project 
             Project.addProject(projectTitle);
+            // let newProject = Object.create(projectTitle); 
             BtnCreateTitle.value = ""; // reset btn value 
             // Delete html current proejct
             deleteProjects();
@@ -648,7 +731,7 @@ main.addEventListener('click', (event) => {
 });
 
 main.addEventListener('change', (event) => {
-    index = getProjectIndex();
+    index = Number(event.target.className.split('_')[1]);
     // priority select color
     if (event.target.classList.contains('TodoPriorityValue')) {
         let TodoPriorityValue = event.target;
@@ -656,8 +739,8 @@ main.addEventListener('change', (event) => {
         todoPriorityColor(TodoPriorityValue); //
     } else if (event.target.classList.contains('PriorityValue')) {
         let prioItem = event.target;
-        // prioValue = event.target.value;
-        // Project.projectPrio[index] = prioValue;
+        prioValue = event.target.value;
+        Project.projectPrio[index] = prioValue;
         projectPriorityColor(prioItem);
     // todo text values add to projectTodoList 
     } else if (event.target.classList.contains('TodoCheckboxText')) {
