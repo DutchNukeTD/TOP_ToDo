@@ -19,7 +19,7 @@ body {
 }
 
 .ContainerAllProjects, .ContainerGrid, .ContainerProjects {
-    margin: 0; /* Verwijder marges */
+    margin-bottom: 15px; /* Verwijder marges */
     padding: 0; /* Verwijder padding */
 }
 
@@ -83,7 +83,7 @@ body {
     background-color: #686868;
     border: none;
     position: absolute; /* Verander positionering naar absoluut */
-    right: 0;
+    right: 40px;
     top: 50%;
     transform: translateY(-50%);
     color: #d1d1d1dd;
@@ -105,7 +105,23 @@ body {
     font-weight: 600;
     text-shadow: 3px 3px 5px black;
     cursor: pointer;
+    /* position: relative; */
+    right: 40px;
 }
+
+/* .BtnDeleteProject:hover {
+    background-color: #686868;
+    border: none;
+    position: relative;
+    right: 35px;
+    color: #e7e7e7;
+    font-size: larger;
+    font-weight: 600;
+    text-shadow: 3px 3px 5px black;
+    cursor: pointer;
+    text-wrap: nowrap;
+} */
+
 
 .CreateProject {
     display: flex;
