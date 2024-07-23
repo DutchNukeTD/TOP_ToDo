@@ -29,8 +29,8 @@ const Project = (function() {
             projects.splice(itemIndex, 1);
             return projects;
         },
-        getProjectDescription: function() {
-            return projectDescription;
+        getProjectDescription: function(project) {
+            return projectDescription[project];
         },
         setProjectDescription: function(item, newDescription) {
             projectDescription[item] = newDescription;
@@ -39,8 +39,8 @@ const Project = (function() {
             projectDescription.splice(itemIndex, 1);
             return projectDescription;
         },
-        getProjectDate: function() {
-            return projectDate;
+        getProjectDate: function(project) {
+            return projectDate[project];
         },
         setProjectDate: function(item, newDate) {
             projectDate[item] = newDate;
@@ -51,6 +51,9 @@ const Project = (function() {
         },
         getProjectPrio: function(item) {
             return projectPrio[item];
+        },
+        getProjectPrioAll: function() {
+            return projectPrio;
         },
         setProjectPrio: function(item, newPrio) {
             projectPrio[item] = newPrio;
@@ -65,59 +68,111 @@ const Project = (function() {
         setCurrentProject: function(newCurrentProject) {
             currentProject = newCurrentProject;
         },
-        getProjectsTodoList: function(item) {
-            return projectsTodoList[item];
+        getProjectsTodoListAll: function() {
+            return projectsTodoList;
+        },
+        getProjectsTodoListProject: function(project) {
+            return projectsTodoList[project];
         },
         getProjectsTodoListItem: function(index, item) {
             return projectsTodoList[index][item];    
         },
         addProjectsTodoList: function(item, newTodoList) {
-            projectsTodoList.push(['']);
+            projectsTodoList.push([""]);
         },
-        setProjectsTodoList: function(item, newTodoList) {
-            projectsTodoList[item] = newTodoList;
+        setProjectsTodoList: function(project, newTodoList='') {
+            projectsTodoList[project] = newTodoList;
         },
-        setProjectsTodoListItem: function(index, item, value) {
+        setProjectsTodoListItem: function(index, item, value='') {
             projectsTodoList[index][item] = value;
         },
-        getAllProjectsTodoList: function(){
+        removeProjectsTodoListProject: function(project){
+            projectsTodoList.splice(project, 1);
             return projectsTodoList;
         },
-        removeProjectsTodoList: function(itemIndex){
-            projectsTodoList.splice(itemIndex, 1);
+        removeProjectsTodoListItem: function(project, itemIndex){
+            projectsTodoList[project].splice(itemIndex, 1);
             return projectsTodoList;
         },
-        getProjectsTodoListChecked: function(item) {
-            return projectsTodoListChecked[item];
+        getProjectsTodoListChecked: function() {
+            return projectsTodoListChecked; 
         },
-        setProjectsTodoListChecked: function(item, newTodoListChecked) {
-            projectsTodoListChecked[item] = newTodoListChecked;
+        getProjectsTodoListCheckedItem: function(project, item) {
+            if (projectsTodoListChecked[project][item] == undefined){
+                return false;
+            } else if (projectsTodoListChecked[project][item] == ''){
+                return false;
+            } else{
+                return projectsTodoListChecked[project][item];
+            }
         },
-        removeProjectsTodoListChecked: function(itemIndex){
-            projectsTodoListChecked.splice(itemIndex, 1);
+        setProjectsTodoListCheckedItem: function(project, item, newTodoListChecked) {
+            projectsTodoListChecked[project][item] = newTodoListChecked;
+        },
+        addProjectsTodoListChecked: function() {
+            projectsTodoListChecked.push([false]);
+        },
+        removeProjectsTodoListCheckedProject: function(project){
+            projectsTodoListChecked.splice(project, 1);
+            return projectsTodoListChecked;
+        },
+        removeProjectsTodoListCheckedItem: function(project, itemIndex){
+            projectsTodoListChecked[project].splice(itemIndex, 1);
             return projectsTodoListChecked;
         },
         getProjectsTodoListDisable: function() {
             return projectsTodoListDisable;
         },
-        setProjectsTodoListDisable: function(item, newTodoListDisable) {
-            projectsTodoListDisable[item] = newTodoListDisable;
+        getProjectsTodoListDisableItem: function(project, item) {
+            if (projectsTodoListDisable[project]  && projectsTodoListDisable[project][item] !== undefined) {
+                return projectsTodoListDisable[project][item];
+            } else {
+                return false;
+            }
         },
-        removeProjectsTodoListDisable: function(itemIndex){
-            projectsTodoListDisable.splice(itemIndex, 1);
+        setProjectsTodoListDisableItem: function(project, item='None', newTodoListDisable) {
+            if (!projectsTodoListDisable[project]) {
+                projectsTodoListDisable[project] = [];
+            }
+            if (item == 'None'){
+                projectsTodoListDisable[project] = [newTodoListDisable];
+            } else {
+                projectsTodoListDisable[project][item] = newTodoListDisable;
+            }
+        },
+        addProjectsTodoListDisableItem: function(){
+            projectsTodoListChecked.push([false]);
+        },
+        removeProjectsTodoListDisableProject: function(project){
+            projectsTodoListDisablesplice(project, 1);
             return projectsTodoListDisable;
         },
-        getProjectsTodoListPrioItem: function(project, index) {
-            return projectsTodoListPrio[project, index];
+        removeProjectsTodoListDisableItem: function(project, itemIndex){
+            projectsTodoListDisable[project].splice(itemIndex, 1);
+            return projectsTodoListDisable;
         },
         getProjectsTodoListPrio: function() {
             return projectsTodoListPrio;
         },
-        setProjectsTodoListPrioItem: function(project, item, newTodoListPrio) {
-            projectsTodoListPrio[project][item] = newTodoListPrio;
+        getProjectsTodoListPrioItem: function(project, index) {
+            return projectsTodoListPrio[project][index];
+        },
+        setProjectsTodoListPrioItem: function(project, item='None', newTodoListPrio) {
+            if (item == 'None'){
+                projectsTodoListPrio[project] = newTodoListPrio;
+            } else {
+                projectsTodoListPrio[project][item] = newTodoListPrio;
+            }
+        },
+        addProjectsTodoListPrioItem: function(){
+            projectsTodoListPrio.push(["low"]);
+        },
+        removeProjectsTodoListPrioProject: function(itemIndex){
+            projectsTodoListPrio.splice(itemIndex, 1);
+            return projectsTodoListPrio;
         },
         removeProjectsTodoListPrioItem: function(project, itemIndex){
-            projectsTodoListPrio.splice(project, itemIndex, 1);
+            projectsTodoListPrio[project].splice(itemIndex, 1);
             return projectsTodoListPrio;
         },
         
@@ -136,11 +191,11 @@ const Project = (function() {
         // Project.projectsTodoList.push([""]),
         Project.addProjectsTodoList(newProjectIndex, [""]);
         // Project.projectsTodoListChecked.push([""]),
-        Project.setProjectsTodoListChecked(newProjectIndex, [""]);
+        Project.addProjectsTodoListChecked();
         // Project.projectsTodoListDisable.push([""]),
-        Project.setProjectsTodoListDisable(newProjectIndex, [""]);
+        Project.addProjectsTodoListDisableItem();
         // Project.projectsTodoListPrio.push(["low"]),
-        Project.setProjectsTodoListPrioItem(newProjectIndex, 0, ["low"]);
+        Project.addProjectsTodoListPrioItem();
         addProjectHTML(Project.getProjects());
         return title;
     },
@@ -154,10 +209,10 @@ const Project = (function() {
         Project.removeProjectDescription(itemIndex);
         Project.removeProjectDate(itemIndex);
         Project.removeProjectPrio(itemIndex);
-        Project.removeProjectsTodoList(itemIndex);
-        Project.removeProjectsTodoListChecked(itemIndex);
-        Project.removeProjectsTodoListDisable(itemIndex);
-        Project.removeProjectsTodoListPrioItem(itemIndex, 0);
+        Project.removeProjectsTodoListProject(itemIndex);
+        Project.removeProjectsTodoListCheckedProject(itemIndex);
+        Project.removeProjectsTodoListDisableProject(itemIndex);
+        Project.removeProjectsTodoListPrioProject(itemIndex);
     }
     }
   })();
@@ -169,24 +224,24 @@ const Project = (function() {
   
   function getProjectIndex() {
     projectIndex = Project.getProjects().indexOf(Project.getCurrentProject());
-    console.log('getProjectIndex() = ' +  projectIndex);
     return projectIndex;
   }
   
   function addProjectTodo(projectsTodoList, btnCreateTodo) {
     projectIndex = Number(btnCreateTodo.split('_')[1]);
+    projectTodoListLenght = Project.getProjectsTodoListProject(projectIndex).length;
     // If array index doesn't exist yet create new one. 
-    if (Project.getProjectsTodoList(projectIndex) === undefined) {
-        Project.setProjectsTodoList(projectIndex, [""]);
-        Project.setProjectsTodoListChecked(projectIndex, [""]);
-        Project.setProjectsTodoListDisable(projectIndex, [""]);
-        Project.setProjectsTodoListPrioItem(projectIndex, 0 ["low"]);
+    if (Project.getProjectsTodoListProject(projectIndex) === undefined) {
+        Project.addProjectsTodoList(projectIndex, [""]);
+        Project.addProjectsTodoListChecked(projectIndex, [false]);
+        Project.setProjectsTodoListDisableItem(projectIndex, projectTodoListLenght, [false]);
+        Project.addProjectsTodoListPrioItem();
     }
     else {
-        Project.setProjectsTodoList(projectIndex, ""); // text value
-        Project.setProjectsTodoListChecked(projectIndex, ""); // checked value
-        Project.setProjectsTodoListDisable(projectIndex, ""); // checked value
-        Project.setProjectsTodoListPrioItem(projectIndex, 0, "low"); // checked value
+        Project.setProjectsTodoListItem(projectIndex, projectTodoListLenght, ""); // text value
+        Project.setProjectsTodoListCheckedItem(projectIndex, projectTodoListLenght, false); // checked value
+        Project.setProjectsTodoListDisableItem(projectIndex, projectTodoListLenght, false); // checked value
+        Project.setProjectsTodoListPrioItem(projectIndex, projectTodoListLenght, "low"); // checked value
     }
   };
   
@@ -318,16 +373,14 @@ const Project = (function() {
   // Add extra row Todo Item HTML
   // Needs to know what project it's on. --> need to create project todos array. 
   // function addProjectTodoItemHTML(projects, projectsTodoList, todoCounter=Project.projectsTodoList[projectIndex].length-1, index="none") {
-  function addProjectTodoItemHTML(projects, projectsTodoList, index = "none", todoCounter = Project.getProjectsTodoList(projectIndex).length-1) {
+  function addProjectTodoItemHTML(projects, projectsTodoList, index = "none", todoCounter = Project.getProjectsTodoListProject(projectIndex).length-1) {
   
     // projectIndex = getProjectIndex();
   
     if (index == "none"){
         projectIndex = getProjectIndex();
-        console.log('projectIndex = getProjectIndex() = ' + projectIndex);
     } else {
         projectIndex = Number(index.split('_')[1]);
-        console.log("projectIndex = Number(index.split('_')[1]) = "+ projectIndex);
     }
   
     projectIndexString = projectIndex.toString().padStart(2, '0');
@@ -388,7 +441,7 @@ const Project = (function() {
     for (let p = 0; p < Project.getProjects().length; p++) {
         try {
             index = allTodoRows[p].className.split('_')[1]; // 00 
-            for (let i = 0; i < Project.getProjectsTodoList(p).length; i++) {
+            for (let i = 0; i < Project.getProjectsTodoListProject(p).length; i++) {
                 if (p == index) {
                     // allTodosRows
                     splitRow = allTodoRows[i].className.split('_'); // split TodoRow name --> Must 
@@ -438,8 +491,8 @@ const Project = (function() {
   
   function createProjectTodos() {
     index = getProjectIndex();
-    for (let i = 0; i < Project.getProjectsTodoList(index).length; i++) {
-        addProjectTodoItemHTML(Project.getProjects(), Project.getAllProjectsTodoList(), "none", i); // ,i) --> needed but gives error, because it's on 3th place.
+    for (let i = 0; i < Project.getProjectsTodoListProject(index).length; i++) {
+        addProjectTodoItemHTML(Project.getProjects(), Project.getProjectsTodoListAll(), "none", i); // ,i) --> needed but gives error, because it's on 3th place.
     }
   };
   
@@ -447,24 +500,25 @@ const Project = (function() {
     index = getProjectIndex();
     projectIndex = '_' + index.toString().padStart(2, '0'); //_00
   
-    let todoCount = Project.getProjectsTodoList(index).length;
+    let todoCount = Project.getProjectsTodoListProject(index).length;
     for (let i = 0; i < todoCount; i++) {
         iString = '._' + i.toString().padStart(3, '0'); //_000
         let vclassName = '.TodoCheckboxText' + '.' + projectIndex + iString;
-        console.log('vclassName = ' + vclassName);
         let todoText = document.querySelector(vclassName);
         // text input
-        todoText.value = Project.getProjectsTodoList(index, i);
+        console.log('index = ' + index);
+        console.log('i = ' + i);
+        todoText.value = Project.getProjectsTodoListItem(index, i);
         // checkbox
-        todoText.disabled = Project.getProjectsTodoListDisable(index, i);
+        todoText.disabled = Project.getProjectsTodoListDisableItem(index, i);
         let vCheckbox = '.Checkbox' + '.' + projectIndex + iString;
         let checkboxChecked = document.querySelector(vCheckbox);
-        checkboxChecked.checked = Project.getProjectsTodoListChecked(index, i);
+        checkboxChecked.checked = Project.getProjectsTodoListCheckedItem(index, i);
         // Prio
         let vPrio = '.TodoPriorityValue' + '.' + projectIndex + iString;
         let prioItem = document.querySelector(vPrio);
-        prioItem.value = Project.getProjectsTodoListPrio(index, i);
-        switch (Project.getProjectsTodoListPrio(index, i)) {
+        prioItem.value = Project.getProjectsTodoListPrioItem(index, i);
+        switch (Project.getProjectsTodoListPrioItem(index, i)) {
             case 'low':
                 prioItem.style.backgroundColor = '#f3f363'; // yellow
                 break;
@@ -487,15 +541,15 @@ const Project = (function() {
     switch (selectedValue) {
         case 'low':
             item.style.backgroundColor = '#f3f363'; // yellow
-            Project.getProjectsTodoListPrio(index)[count] = 'low';
+            Project.getProjectsTodoListPrioItem(index, count) = 'low';
             break;
         case 'mid':
             item.style.backgroundColor = '#f3be63'; // orange
-            Project.getProjectsTodoListPrio(index)[count] = 'mid';
+            Project.getProjectsTodoListPrioItem(index, count) = 'mid';
             break;
         case 'high':
             item.style.backgroundColor = '#f93434'; // red
-            Project.getProjectsTodoListPrio(index)[count] = 'high';
+            Project.getProjectsTodoListPrioItem(index, count) = 'high';
             break;
     }
   }
@@ -506,15 +560,15 @@ const Project = (function() {
     switch (selectedValue) {
         case 'low':
             item.style.backgroundColor = '#f3f363'; // yellow
-            Project.getProjectPrio(index) = 'low';
+            // Project.getProjectPrio(index) = 'low';
             break;
         case 'mid':
             item.style.backgroundColor = '#f3be63'; // orange
-            Project.getProjectPrio(index) = 'mid';
+            // Project.getProjectPrio(index) = 'mid';
             break;
         case 'high':
             item.style.backgroundColor = '#f93434'; // red
-            Project.getProjectPrio(index) = 'high';
+            // Project.getProjectPrio(index) = 'high';
             break;
     }
   }
@@ -554,14 +608,14 @@ const Project = (function() {
     itemProject = itemParent.querySelector('.CreatedProject');
     itemName = itemProject.innerHTML;
     itemIndex = getClassnameProjectIndex(project);
-    Project.removeProjects.splice(itemIndex);
-    Project.removeProjectDescription.splice(itemIndex);
-    Project.removeProjectPrio.splice(itemIndex);
-    Project.removeProjectDate.splice(itemIndex);
-    Project.removeProjectsTodoList.splice(itemIndex);
-    Project.removeProjectsTodoListChecked.splice(itemIndex);
-    Project.removeProjectsTodoListDisable.splice(itemIndex);
-    Project.removeProjectsTodoListPrioItem.splice(itemIndex, 0);
+    Project.removeProject(itemIndex);
+    Project.removeProjectDescription(itemIndex);
+    Project.removeProjectPrio(itemIndex);
+    Project.removeProjectDate(itemIndex);
+    Project.removeProjectsTodoListProject(itemIndex);
+    Project.removeProjectsTodoListCheckedProject(itemIndex);
+    Project.removeProjectsTodoListDisableProject(itemIndex);
+    Project.removeProjectsTodoListPrioProject(itemIndex);
   }
   
   function createProjectFunctions() {
@@ -573,12 +627,13 @@ const Project = (function() {
     setTodoValues();
   
     index = getProjectIndex();
+    console.log('Creating functions for project index:', index);
     projectIndex = '_' + index.toString().padStart(2, '0'); //_00
   
     // set project Title 
     let titleClass = '.ProjectTitleText.' + projectIndex;
     let projectTitle = document.querySelector(titleClass);
-    projectName = Project.getProjects(index);
+    projectName = Project.getProject(index);
     projectTitle.value = projectName;
     // set project Description 
     let descriptionValue = '.DescriptionText.' + projectIndex;
@@ -592,8 +647,10 @@ const Project = (function() {
     let prioValue = '.PriorityValue.' + projectIndex;
     let projectPrioValue = document.querySelector(prioValue);
     projectPrioValue.value = Project.getProjectPrio(index);
+    console.log('project index = ' + index);
+    console.log(projectPrioValue.value);
     // set project prio color
-    // projectPriorityColor(projectPrioValue); --> tijdelijk uit
+    projectPriorityColor(projectPrioValue);
   }
   
   function getDates(){
@@ -616,15 +673,15 @@ const Project = (function() {
         switch (selectedValue) {
             case 'low':
                 todoPrios[i].style.backgroundColor = '#f3f363'; // yellow
-                Project.getProjectsTodoListPrio(index)[count] = 'low';
+                Project.setProjectsTodoListPrioItem(index, count, 'low');
                 break;
             case 'mid':
                 todoPrios[i].style.backgroundColor = '#f3be63'; // orange
-                Project.getProjectsTodoListPrio(index)[count] = 'mid';
+                Project.setProjectsTodoListPrioItem(index, count, 'mid');
                 break;
             case 'high':
                 todoPrios[i].style.backgroundColor = '#f93434'; // red
-                Project.getProjectsTodoListPrio(index)[count] = 'high';
+                Project.setProjectsTodoListPrioItem(index, count, 'high');
                 break;
         }
     }
@@ -637,15 +694,15 @@ const Project = (function() {
         switch (selectedValue) {
             case 'low':
                 projectPrios[i].style.backgroundColor = '#f3f363'; // yellow
-                Project.getProjectPrio(i) = 'low';
+                // Project.setProjectPrio(i, 'low');
                 break;
             case 'mid':
                 projectPrios[i].style.backgroundColor = '#f3be63'; // orange
-                Project.getProjectPrio(i) = 'mid';
+                // Project.setProjectPrio(i, 'mid');
                 break;
             case 'high':
                 projectPrios[i].style.backgroundColor = '#f93434'; // red
-                Project.getProjectPrio(i) = 'high';
+                // Project.setProjectPrio(i, 'high');
                 break;
         }
     }
@@ -669,7 +726,7 @@ const Project = (function() {
             Project.setProjectPrio(projectObj.projectPrio);
             Project.setPurrentProject(projectObj.currentProject);
             Project.setProjectsTodoList(projectObj.projectsTodoList);
-            Project.setProjectsTodoListChecked(projectObj.projectsTodoListChecked);
+            Project.setProjectsTodoListCheckedItem(projectObj.projectsTodoListChecked);
             Project.setProjectsTodoListDisable(projectObj.projectsTodoListDisable);
             Project.setProjectsTodoListPrioItem(projectObj.projectsTodoListPrio);
             
@@ -726,13 +783,13 @@ const Project = (function() {
     // Delete all current projects on screen
     deleteProjects();
     // Create all projects 
-    for (let i=0; i<Project.projects().length; i++){
-        Project.setCurrentProject(Project.projects(i));
+    for (let i=0; i<Project.getProjects().length; i++){
+        Project.setCurrentProject(Project.getProject(i));
         createProjectHTML();
-        projectIndex = i.toString().padStart(2, '0');
+        let projectIndex = i.toString().padStart(2, '0');
   
         let ProjectTitleText = document.querySelector('.ProjectTitleText._'+projectIndex);
-        ProjectTitleText.value = Project.setCurrentProject;
+        ProjectTitleText.value = Project.getCurrentProject();
         let discriptionText = document.querySelector('.DescriptionText._'+projectIndex);
         discriptionText.value = Project.getProjectDescription(i);
         let dueDateDate = document.querySelector('.Date._'+projectIndex);
@@ -798,11 +855,8 @@ const Project = (function() {
                     let mm = String(nextWeek.getMonth() + 1).padStart(2, '0');
                     let yyyy = nextWeek.getFullYear();
                     let nextDayDate = String(yyyy) + '-' + String(mm) + '-' + String(dd); 
-                
-                    console.log('nextWeek = ' + nextDayDate);
                     
                     if (Project.getProjectDate(item) == nextDayDate) {
-                        console.log(nextDayDate);
                         projectIndex = item;
                         Project.setCurrentProject(Project.getProjects(projectIndex));
                         createProjectHTML();
@@ -881,7 +935,7 @@ const Project = (function() {
             // Create new project 
             createProjectHTML();
             // Create todo item
-            addProjectTodoItemHTML(Project.getProjects(), Project.getAllProjectsTodoList());
+            addProjectTodoItemHTML(Project.getProjects(), Project.getProjectsTodoListAll());
             const projectTitleText = document.querySelector('.ProjectTitleText');
             projectIndex = Project.getProjects().indexOf(Project.getCurrentProject());
             projectName = Project.getProject(projectIndex);
@@ -898,9 +952,15 @@ const Project = (function() {
   const main = document.querySelector('.Main');
   main.addEventListener('click', (event) => {
     // create todo row
+    projectIndex = getClassnameProjectIndex(event.target);
+    index = Project.getProjectsTodoListAll
+    
     if (event.target.classList.contains('BtnCreateTodo')) {
-        addProjectTodo(Project.setProjectsTodoList(), event.target.className);
-        addProjectTodoItemHTML(Project.getProjects(), Project.getProjectsTodoList(), event.target.className); 
+        let todoIndex = Project.getProjectsTodoListProject(projectIndex).length -1
+        console.log('projectIndex = ' + projectIndex);
+        console.log('todoIndex = ' + todoIndex);
+        addProjectTodo(Project.setProjectsTodoListItem(projectIndex, todoIndex), event.target.className);
+        addProjectTodoItemHTML(Project.getProjects(), event.target.className); 
         localStorage.setItem('projectObj', JSON.stringify(Project));
     }
     // delete todo row
@@ -911,13 +971,13 @@ const Project = (function() {
         if (todoCheckbox) {
             rowIndex = getClassnameCountIndex(event.target);
             // index = getProjectIndex(); // --> current project error with all projects
-            index = getClassnameProjectIndex(event.target); // checks project number from target. 
-            Project.removeProjectsTodoList(index);
+            project = getClassnameProjectIndex(event.target); // checks project number from target. 
+            Project.removeProjectsTodoListItem(project, rowIndex);
             todoCheckbox.remove();
             // Need to remove event.target from Project:
-            Project.removeProjectsTodoListChecked(index);
-            Project.removeProjectsTodoListDisable(index);
-            Project.removeProjectsTodoListPrioItem(index, 0);
+            Project.removeProjectsTodoListCheckedItem(project, rowIndex);
+            Project.removeProjectsTodoListDisableItem(project, rowIndex);
+            Project.removeProjectsTodoListPrioItem(project, rowIndex);
 
         }
   
@@ -937,14 +997,14 @@ const Project = (function() {
         if (checkbox.checked) {
             todoCheckboxText.disabled = true;
             todoPriorityBox.disabled = true;
-            Project.setProjectsTodoListChecked(index)[count] = true;
-            Project.setProjectsTodoListDisable(index)[count] = true;
+            Project.setProjectsTodoListCheckedItem(index, count, true);
+            Project.setProjectsTodoListDisableItem(index, count, true);
         }
         else if (checkbox.checked == false) {
             todoCheckboxText.disabled = false;
             todoPriorityBox.disabled = false;
-            Project.setProjectsTodoListChecked(index)[count] = false;
-            Project.setProjectsTodoListDisable(index)[count] = false;
+            Project.setProjectsTodoListCheckedItem(index, count, false);
+            Project.setProjectsTodoListDisableItem(index, count, false);
         }
     }
     localStorage.setItem('projectObj', JSON.stringify(Project));
@@ -956,11 +1016,14 @@ const Project = (function() {
     if (event.target.classList.contains('TodoPriorityValue')) {
         let TodoPriorityValue = event.target;
         count = getClassnameCountIndex(event.target);
+        Project.setProjectsTodoListPrioItem(index, count, TodoPriorityValue.value);
         todoPriorityColor(TodoPriorityValue); //
     } else if (event.target.classList.contains('PriorityValue')) {
         let prioItem = event.target;
         prioValue = event.target.value;
-        Project.setProjectPrio(index) = prioValue;
+        console.log('projectIndex = ' + index);
+        console.log('Setting priority:', index, prioValue);  // Nieuwe logging
+        Project.setProjectPrio(index, prioValue);
         projectPriorityColor(prioItem);
     // todo text values add to projectTodoList 
     } else if (event.target.classList.contains('TodoCheckboxText')) {
@@ -972,13 +1035,13 @@ const Project = (function() {
         Project.setProjectsTodoListItem(textBoxProject, textBoxIndex, textValue);
     } else if (event.target.classList.contains('DescriptionText')) {
         textValue = event.target.value;
-        Project.setProjectDescription(index) = textValue;
+        Project.setProjectDescription(index, textValue);
     } else if (event.target.classList.contains('Date')) {
         dateValue = event.target.value;
-        Project.setProjectDate(index) = dateValue;
+        Project.setProjectDate(index, dateValue);
     } else if (event.target.classList.contains('ProjectTitleText')) {
         projectTitle = event.target.value;
-        Project.setProject(index) = projectTitle;
+        Project.setProject(index, projectTitle);
         Project.setCurrentProject(projectTitle);
         projectIndexString = index.toString().padStart(2, '0');
         itemName = '.CreatedProject' + "._" + projectIndexString;
